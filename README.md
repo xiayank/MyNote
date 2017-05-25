@@ -1,3 +1,3 @@
-# myNote
-#### This repo contains my notes when  am on the way to a software develper. d
-#### Please move to issue page to see them.
+#  MY Note
+#### This repo contains my notes when I am on the way to be a great software develper. 
+#### Please move to [issue page](https://github.com/xiayank/myNote/issues) to see them.
