@@ -1,5 +1,5 @@
-#Resources
-####Jetty
+# Resources
+#### Jetty
 ```bash
 Install:
 http://eclipse-jetty.github.io/installation.html
