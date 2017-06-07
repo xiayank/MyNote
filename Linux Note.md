@@ -9,7 +9,7 @@ export PATH=/usr/local/bin:$PATH
 
 #Note: “:” separate different path
 ```
------------
+
 #### Zshr
 
 ```bash
@@ -18,7 +18,7 @@ open ~/.zshrc
 环境变量
 
 ```
------------
+
 
 #### Install tar.gz file:
 ```bash
@@ -26,7 +26,7 @@ tar -xzf archive.tar.gz
 cd archive
 make
 ```
------------
+
 #### Maven to make Jar:
 ```bash
 mvn clean install    
@@ -38,14 +38,14 @@ java -jar {classname}
 ```bash
 Ctrl+R
 ```
------------
+
 
 #### Change the port on maven server:
 ```bash
 java -jar running-location-service-1.0.0.BUILD-SNAPSHOT.jar --server.port=9000
 
 ```
------------
+
 
 
 #### Execute .sh file
@@ -54,7 +54,7 @@ java -jar running-location-service-1.0.0.BUILD-SNAPSHOT.jar --server.port=9000
 sh ./supply.sh
 
 ```
------------
+
 
 #### MongoDB
 
@@ -67,7 +67,7 @@ sh ./supply.sh
 
 4.goto express folder: nodemon
 ```
------------
+
 #### Memcached
 
 ```
@@ -98,14 +98,14 @@ add #如果key存在，则add无效
 6.Feature - Distribute system
 user just need to provide the memcached server IP, do not need to care where to save the data.
 ```
------------
+
 #### iTerm2
 
 ```bash
 Ctrl + u        删除光标之前到行首的字符
 
 ```
------------
+
 
 #### Generate Code from Protocol Buffer(plugin gRPC)
 
@@ -113,7 +113,7 @@ Ctrl + u        删除光标之前到行首的字符
 /Users/NIC/Documents/GitHub_tools/protoc-3.3.0-osx-x86_64/bin/protoc  --plugin=protoc-gen-grpc-java=/Users/NIC/Documents/GitHub_tools/protoc-gen-grpc-java-1.3.0-osx-x86_64.exe  --grpc-java_out=/Users/NIC/Documents/504_BankEnd/DemoCode/week7_codelab2/SearchAdsRPC --java_out=/Users/NIC/Documents/504_BankEnd/DemoCode/week7_codelab2/SearchAdsRPC  --proto_path=/Users/NIC/Documents/504_BankEnd/DemoCode /Users/NIC/Documents/504_BankEnd/DemoCode/week7_codelab2/SearchAds.proto
 #proto_path=up folder path [space] absolute path
 ```
------------
+
 
 #### Open Source Saftware Installl Path
 
@@ -124,10 +124,10 @@ mv spark-1.1-hoop spark
 2.Move "spark" to path:
 mv spark /usr/local
 ```
------------
+
 
 #### Mysql Access Denied -> Change username 
-
+[Ref Link](https://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw)
 
 Follow the steps below.
 
@@ -153,8 +153,9 @@ You should now be able to connect with your new password.
 ```
 $ mysql -u root -p
 Enter password: my_password
-```
------------
+
+``` 
+
 
 #### 增加权限
 
@@ -162,7 +163,7 @@ Enter password: my_password
 chmod 777 "fileName"
 [enter link description here](dd)
 ```
------------
+
 
 #### File management 
 
@@ -176,6 +177,121 @@ chmod 777 "fileName"
    cat "originalFile.txt" |tail -n 5000 > "newFileName.txt" 
    #Last 5000 lines
 ```
------------
 
+
+#### Redis
+
+```bash
+redis-serber -daemonize yes
+pidof redis
+
+redis-cli ping : check status
+
+```
+
+
+#### Rabbit MQ
+
+```bash
+1. Startup MQ server : rabbitmq-server start
+2. Stop :              rabbitmq-server stop
+3. Login :
+  http://127.0.0.1:15672/ 
+  username: guest   psw: guest
+  
+```
+[RabbitMQ传递对象-序列化](http://blog.csdn.net/btwangzhi/article/details/55001348)
+```java
+1. Producer
+ConnectionFactory connFactory=new ConnectionFactory();
+ //设置服务器位置
+ connFactory.setHost("localhost");
+//设置服务器端口号
+//connFactory.setPort(5672);
+//创建连接
+Connection con=connFactory.newConnection();
+//创建channel
+Channel channel=con.createChannel();
+ //设置队列的属性第一个参数为队列名。第二个参数为是否创建一个持久队列，第三个是否创建一个专用的队列，
+//第四个参数为是否自动删除队列，第五个参数为其他属性（结构参数）
+channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+channel.basicPublish("",QUEUE_NAME,null,SerializationUtils.serialize(user));
+channel.close();
+con.close();
+
+2. Comsumer
+ConnectionFactory connFactory=new ConnectionFactory();
+
+//设置服务器位置
+connFactory.setHost("localhost");
+//设置端口号
+//connFactory.setPort(15672);
+//连接登录用户名
+//connFactory.setPassword("guest");
+//连接登录密码
+//connFactory.setUsername("guest");
+//创建连接
+Connection con=connFactory.newConnection();
+//创建channel
+Channel channel=con.createChannel();
+//设置队列的属性第一个参数为队列名。第二个参数为是否创建一个持久队列，第三个是否创建一个专用的队列，
+//第四个参数为是否自动删除队列，第五个参数为其他属性（结构参数）
+channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+Consumer consumer = new DefaultConsumer(channel){
+            @Override
+            public void handleDelivery(String consumerTag, Envelope envelope,AMQP.BasicProperties properties, byte[] body)
+throws IOException {
+                Product product = (Product) SerializationUtils.deserialize(body);
+//consumer 不需要close，override callback function就行
+```
+
+#### 
+
+```bash
+
+
+```
+
+
+#### 
+
+```bash
+
+
+```
+
+#### 
+
+```bash
+
+
+```
+
+#### 
+
+```bash
+
+
+```
+
+#### 
+
+```bash
+
+
+```
+
+#### 
+
+```bash
+
+
+```
+
+#### 
+
+```bash
+
+
+```
 
