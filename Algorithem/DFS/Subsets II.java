@@ -21,6 +21,7 @@ class Solution {
                 ArrayList<ArrayList<Integer>> rst){
         rst.add(new ArrayList<Integer>(subset));
         for(int i = index; i < nums.length; i++){
+            //1.continue: 前面后面相等时，没有用前面的数
             if(i != index && nums[i] == nums[i -1]){
                 continue;
             }

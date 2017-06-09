@@ -25,6 +25,7 @@ class Solution {
            return;
        }               
        for(int i = 0; i < nums.length; i++){
+           //1.没有duplicate,就用本身的list来判断算过没有
            if(list.contains(nums[i])){
                continue;
            }
