@@ -125,7 +125,7 @@ mv spark-1.1-hoop spark
 mv spark /usr/local
 ```
 
-
+---
 #### Mysql Access Denied -> Change username 
 [Ref Link](https://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw)
 
@@ -155,7 +155,65 @@ $ mysql -u root -p
 Enter password: my_password
 
 ``` 
+---
+### Remove MySQL completely
 
+1. Open the Terminal
+2. Use `mysqldump` to backup your databases
+3. Check for MySQL processes with: `ps -ax | grep mysql`
+4. Stop and kill any MySQL processes
+5. Analyze MySQL on HomeBrew: 
+        
+    ```
+    brew remove mysql
+    brew cleanup
+    ```
+
+6. Remove files: 
+
+    ```
+    sudo rm /usr/local/mysql
+    sudo rm -rf /usr/local/var/mysql
+    sudo rm -rf /usr/local/mysql*
+    sudo rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+    sudo rm -rf /Library/StartupItems/MySQLCOM
+    sudo rm -rf /Library/PreferencePanes/My*
+    ```
+
+7. Unload previous MySQL Auto-Login: 
+        
+    ```
+    launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+    ```
+        
+8. Remove previous MySQL Configuration: 
+
+    ```
+    subl /etc/hostconfig` 
+    # Remove the line MYSQLCOM=-YES-
+    ```
+        
+9. Remove previous MySQL Preferences: 
+    
+    ```
+    rm -rf ~/Library/PreferencePanes/My*
+    sudo rm -rf /Library/Receipts/mysql*
+    sudo rm -rf /Library/Receipts/MySQL*
+    sudo rm -rf /private/var/db/receipts/*mysql*
+    ```
+    
+10. Restart your computer just to ensure any MySQL processes are killed
+
+---
+### Install MySQL on macOS Sierra
+
+Enter the following command : `$ brew info mysql`  
+Expected output: **mysql: stable 5.7.15 (bottled)**
+
+To install MySQL enter : `$ brew install mysql`
+Then `mysql.server start`
+
+---
 
 #### 增加权限
 
