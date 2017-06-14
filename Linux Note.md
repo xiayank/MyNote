@@ -215,6 +215,24 @@ Then `mysql.server start`
 
 ---
 
+### Change Password in MySQL
+
+　1. 命令
+```bash
+　　 usr/bin/mysqladmin -u root password 'new-password'
+　　 格式：mysqladmin -u用户名 -p旧密码 password 新密码
+```
+　2. 例子
+　　 例1：给root加个密码123456。
+　　 键入以下命令 ：
+　　 ```  /usr/bin/mysqladmin -u root password 123456```
+　　 注：因为开始时root没有密码，所以-p旧密码一项就可以省略了。
+3. 增加了密码后的登录格式如下：
+　　 mysql -u root -p
+　　 Enter password: (你自己设的密码)
+
+---
+
 #### 增加权限
 
 ```bash
@@ -249,15 +267,27 @@ redis-cli ping : check status
 
 
 #### Rabbit MQ
-
-```bash
-1. Startup MQ server : rabbitmq-server start
-2. Stop :              rabbitmq-server stop
+1. Startup MQ server 
+`rabbitmq-server start` or `brew services start rabbitmq`
+2. Stop               
+`rabbitmq-server stop` or `brew services stop rabbitmq`
 3. Login :
+
+```  
   http://127.0.0.1:15672/ 
-  username: guest   psw: guest
-  
+  username: guest   
+  psw: guest
 ```
+4. ERROR:
+```
+ERROR: "node with name "rabbit" already running"
+```
+
+   `rabbitmqctl stop `
+[Reference](https://stackoverflow.com/questions/8737754/node-with-name-rabbit-already-running-but-also-unable-to-connect-to-node?rq=1) 
+
+---
+
 [RabbitMQ传递对象-序列化](http://blog.csdn.net/btwangzhi/article/details/55001348)
 ```java
 1. Producer
@@ -301,15 +331,19 @@ Consumer consumer = new DefaultConsumer(channel){
 throws IOException {
                 Product product = (Product) SerializationUtils.deserialize(body);
 //consumer 不需要close，override callback function就行
+
 ```
 
-#### 
+#### Related Path
 
 ```bash
-
-
+G:\site\other\index.htm
+G:\site\web\article\01.htm
 ```
-
+`G:\site\other`是源文件的目录
+01.htm要想链接到index.htm这个文件，在01.htm文件里面应该写上这句：
+`../../other/index.htm`
+这里的 ../ 表示向上一级。
 
 #### 
 
