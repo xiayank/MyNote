@@ -295,7 +295,7 @@ ConnectionFactory connFactory=new ConnectionFactory();
  //设置服务器位置
  connFactory.setHost("localhost");
 //设置服务器端口号
-//connFactory.setPort(5672);
+connFactory.setPort(5672);
 //创建连接
 Connection con=connFactory.newConnection();
 //创建channel
@@ -313,11 +313,11 @@ ConnectionFactory connFactory=new ConnectionFactory();
 //设置服务器位置
 connFactory.setHost("localhost");
 //设置端口号
-//connFactory.setPort(15672);
+connFactory.setPort(15672);
 //连接登录用户名
-//connFactory.setPassword("guest");
+connFactory.setPassword("guest");
 //连接登录密码
-//connFactory.setUsername("guest");
+connFactory.setUsername("guest");
 //创建连接
 Connection con=connFactory.newConnection();
 //创建channel
