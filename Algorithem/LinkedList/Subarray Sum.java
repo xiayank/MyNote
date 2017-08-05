@@ -3,6 +3,8 @@ Given an integer array, find a subarray where the sum of numbers is zero. Your c
 Example
 Given [-3, 1, 2, -3, 4], return [0, 2] or [1, 3].
 
+
+
 public class Solution {
     /**
      * @param nums: A list of integers
@@ -15,7 +17,9 @@ public class Solution {
         ArrayList<Integer> res = new ArrayList<>();
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 
-        map.put(0, -1);//base case 只有两个数且和等于0[-1, 1]的情况
+        map.put(0, -1);
+        // 一开始的时候sum = 0, index = -1, 因为后面会+1
+        //case:只有两个数且和等于0[-a, a]的情况
 
         int sum = 0;
         for(int i = 0; i < len; i++){
