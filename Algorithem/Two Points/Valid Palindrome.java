@@ -6,16 +6,21 @@ For example,
 
 
 public class Solution {
+    /*
+     * @param s: A string
+     * @return: Whether the string is a valid palindrome
+     */
     public boolean isPalindrome(String s) {
-        if (s == null || s.length() == 0) {
+        // write your code here
+          if (s == null || s.length() == 0) {
             return true;
         }
 
         int start = 0;
         int end = s.length() - 1;
         while (start < end) {
-            while (start < end && !isvalid(s.charAt(front))){ // nead to check range of a/b
-                front++;
+            while (start < end && !isvalid(s.charAt(start))){ // nead to check range of a/b
+                start++;
             }
 
             while (start < end && ! isvalid(s.charAt(end))) { // same here, need to check border of a,b
@@ -35,5 +40,6 @@ public class Solution {
 
     private boolean isvalid (char c) {
         return Character.isLetter(c) || Character.isDigit(c);
+
     }
 }
