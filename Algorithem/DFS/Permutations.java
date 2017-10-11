@@ -1,38 +1,44 @@
+Given a collection of distinct numbers, return all possible permutations.
+
+For example,
+[1,2,3] have the following permutations:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+
 class Solution {
-    /**
-     * @param nums: A list of integers.
-     * @return: A list of permutations.
-     */
     public List<List<Integer>> permute(int[] nums) {
-        // write your code here
-        //ArrayList<ArrayList<Integer>>rst = new ArrayList<>(); ????
-        ArrayList<List<Integer>>rst = new ArrayList<>();
-        if(nums == null || nums.length == 0){
-            rst.add(new ArrayList<Integer>());
-            return rst;
+        List<List<Integer>>res = new ArrayList<>();
+        if(nums == null){
+            res.add(new ArrayList<Integer>());
+            return res;
         }
-        ArrayList<Integer> list = new ArrayList<>();
-        DFS(list, rst, nums);
-        return rst;
+        List<Integer>list = new ArrayList<>();
+        DFS(nums, list, res);
+        return res;
     }
-    
-    private void DFS(ArrayList<Integer> list, 
-                    ArrayList<List<Integer>>rst,int[]nums){
-                    //ArrayList<ArrayList<Integer>>rst,int[]nums){
-       if(list.size() == nums.length){
-           //rst.add(list);
-           rst.add(new ArrayList<Integer>(list));
-           return;
-       }               
-       for(int i = 0; i < nums.length; i++){
-           //1.没有duplicate,就用本身的list来判断算过没有
-           if(list.contains(nums[i])){
-               continue;
-           }
-           list.add(nums[i]);
-           DFS(list, rst, nums);
-           list.remove(list.size() - 1);
-       }
-        
+    private void DFS(int[] nums, List<Integer>list, List<List<Integer>>res){
+        //递归的出口
+        if(nums.length == list.size()){
+            res.add(new ArrayList<Integer>(list));
+            //?????
+        }
+        //递归的拆解：想清楚如何一步一步往下走，再回来
+        for(int i = 0; i < nums.length; i++){
+            //去重，去已经加过的数
+            if(list.contains(nums[i])){
+                continue;
+            }
+            list.add(nums[i]);
+            DFS(nums, list, res);
+            //在这个DFS中完成了所有带nums[i]的组合，所以在下一个动作中就要remove掉nums[i]，因为num[i]开头的已经完成了。
+            //backtrack
+            list.remove(list.size() - 1);
+        }
     }
 }
